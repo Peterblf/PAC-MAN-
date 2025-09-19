@@ -15,7 +15,7 @@ Projet en JavaScript pour recréer une version simplifiée de Pac-Man
 - [ ] Étape 2 – Déplacements de Pac-Man
 - [ ] Étape 3 – Collecte des pac-gommes
 - [ ] Étape 4 – Condition de victoire
-- [ ] Étape 5 – Fantômes (IA basique)
+- [ ] Étape 5 – Fantômes 
 - [ ] Étape 6 – Collisions Pac-Man/fantômes
 - [ ] Étape 7 – Super pac-gommes
 - [ ] Étape 8 – Améliorations visuelles

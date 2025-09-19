@@ -23,3 +23,6 @@ Projet en JavaScript pour recréer une version simplifiée de Pac-Man
 
 ## Lancement
 Ouvrir simplement `index.html` dans un navigateur 
+```html
+https://peterblf.github.io/pacman_js/
+```

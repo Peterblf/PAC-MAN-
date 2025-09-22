@@ -1,1 +1,31 @@
+body {
+  margin: 0;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Conteneur du jeu */
+#game-container {
+  width: 600px;
+  height: 400px;
+  background-color: #000;
+  position: relative;
+  border: 2px solid #fff;
+}
+
+/* Pac-Man */
+#pacman {
+  width: 50px;
+  height: 50px;
+  background-color: yellow;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(100% 50%, 0% 0%, 0% 100%);
+}
 

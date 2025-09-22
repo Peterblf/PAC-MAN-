@@ -26,6 +26,5 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  clip-path: polygon(100% 50%, 75% 25%, 50% 50%, 75% 75%, 100% 50%);
 }
 

@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #111;
+  background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,34 +8,34 @@ body {
 }
 
 #game-container {
-  display: grid;
-  grid-template-columns: repeat(28, 20px);
-  grid-template-rows: repeat(31, 20px);
-  gap: 0;
   position: relative;
-  background-color: #111;
+  width: 560px; /* 28 colonnes * 20px */
+  height: 620px; /* 31 lignes * 20px */
 }
 
-/* Cases */
+/* Chaque case */
 .cell {
   width: 20px;
   height: 20px;
+  position: absolute;
+  box-sizing: border-box;
 }
 
-.wall {
-  background-color: #333; 
+/* Types de cases */
+.wall { 
+  background-color: #222; 
+  border: 1px solid #444;
+}
+.empty { 
+  background-color: #00f; 
 }
 
-.empty {
-  background-color: #007; 
-}
-
-/* PacMan */
+/* Pac-Man */
 #pacman {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   background-color: yellow;
   border-radius: 50%;
   position: absolute;
-  transition: top 0.1s linear, left 0.1s linear;
+  z-index: 10;
 }

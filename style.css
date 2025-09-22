@@ -9,8 +9,9 @@ body {
 
 #game-container {
   position: relative;
-  width: 560px; /* 28 colonnes */ 
-  height: 620px; /* 31 lignes */
+  width: 560px; /* 28 colonnes*/
+  height: 520px; /* 31 lignes */
+  border: 2px solid white; /* contour blanc */
 }
 
 /* Chaque case */
@@ -23,17 +24,17 @@ body {
 
 /* Types de cases */
 .wall { 
-  background-color: #222; 
-  border: 1px solid #444;
+  background-color: #000; /* murs noirs */
 }
+
 .empty { 
   background-color: #00f; 
 }
 
 /* Pac-Man */
 #pacman {
-  width: 18px;
-  height: 18px;
+  width: 20px;  /* taille de la case */
+  height: 20px;
   background-color: yellow;
   border-radius: 50%;
   position: absolute;
@@ -52,3 +53,13 @@ body {
   transform: translate(-50%, -50%);
 }
 
+#score {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 20px;
+  z-index: 20;
+}

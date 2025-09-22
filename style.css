@@ -7,24 +7,34 @@ body {
   height: 100vh;
 }
 
-/* Conteneur du jeu */
 #game-container {
-  width: 600px;
-  height: 400px;
-  background-color: #000;
+  display: grid;
+  grid-template-columns: repeat(28, 20px);
+  grid-template-rows: repeat(31, 20px);
+  gap: 0;
   position: relative;
-  border: 2px solid #fff;
+}
+
+/* Cases */
+.cell {
+  width: 20px;
+  height: 20px;
+}
+
+.wall {
+  background-color: black;
+}
+
+.empty {
+  background-color: blue;
 }
 
 /* Pac-Man */
 #pacman {
-  width: 50px;
-  height: 50px;
+  width: 20px;
+  height: 20px;
   background-color: yellow;
   border-radius: 50%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transition: top 0.1s, left 0.1s;
 }
-

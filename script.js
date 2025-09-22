@@ -29,22 +29,22 @@ const carte = [
 
 const gameContainer = document.getElementById('game-container');
 const cellSize = 20;
-const overlay = document.getElementById("overlay");
-const music = document.getElementById("bg-music");
+const overlay = document.getElementById("overlay");  //overlay avant le lancemennt du jeu
+const music = document.getElementById("bg-music");   
 
 document.addEventListener("keydown", startGame, { once: true });
 document.addEventListener("click", startGame, { once: true });
 
-function startGame() {
+function startGame() {   //dès que l'overlay disparait, la musique ce lance
   music.play();
   overlay.style.display = "none";
 }
 
 let score = 0;
 const scoreDisplay = document.getElementById('score');
-const pacgommes = []; // tableau pour stocker toutes les pacgommes
+const pacgommes = []; // tableau pour stocker les pacgommes
 
-// Générer la map et les pacgommes (remplacer carte[] par ta propre map)
+// Générer la map et les pacgommes 
 carte.forEach((row, y) => {
   row.forEach((cell, x) => {
     const div = document.createElement('div');
@@ -55,7 +55,7 @@ carte.forEach((row, y) => {
     div.style.top = y * cellSize + 'px';
     gameContainer.appendChild(div);
 
-    if(cell === 2){
+    if(cell === 2){ // ajoute une pacgomme pour toute les "cellules" du tableau ou il y a un 2
       const pacgomme = document.createElement('div');
       pacgomme.classList.add('pacgomme');
       pacgomme.dataset.x = x;
@@ -71,8 +71,8 @@ carte.forEach((row, y) => {
 // Pac-Man
 const pacman = document.createElement('div');
 pacman.id = 'pacman';
-let pacX = 13 * cellSize; // colonne
-let pacY = 12 * cellSize; // ligne
+let pacX = 13 * cellSize; // spawn de pacman 
+let pacY = 12 * cellSize; 
 gameContainer.appendChild(pacman);
 
 function updatePacmanPosition() {
@@ -84,7 +84,7 @@ updatePacmanPosition();
 
 let currentDirection = null;
 let desiredDirection = null;
-const moveDelay = 15; // nombre de frames entre chaque déplacement
+const moveDelay = 15; // nombre de frames entre chaque déplacement(vitesse de deplacement)
 let frameCounter = 0;
 
 document.addEventListener('keydown', (e) => {
@@ -108,7 +108,7 @@ function canMove(dir) {
   return carte[row][col] !== 1;
 }
 
-// Vérifie si Pac-Man mange une pacgomme
+// Vérif si Pac-Man mange une pacgomme
 function checkPacgomme() {
   const col = Math.floor(pacX / cellSize);
   const row = Math.floor(pacY / cellSize);

@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const tailleCase = 20; // taille d'une case en pxl
+const tailleCase = 18; // taille d'une case en pxl
 
 // map du jeu
 // 0 = vide, 1 = mur, 2 = pacgomme, 3 = super pacgomme

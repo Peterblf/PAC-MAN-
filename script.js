@@ -29,6 +29,16 @@ const carte = [
 
 const gameContainer = document.getElementById('game-container');
 const cellSize = 20;
+const overlay = document.getElementById("overlay");
+const music = document.getElementById("bg-music");
+
+document.addEventListener("keydown", startGame, { once: true });
+document.addEventListener("click", startGame, { once: true });
+
+function startGame() {
+  music.play();
+  overlay.style.display = "none";
+}
 
 let score = 0;
 const scoreDisplay = document.getElementById('score');

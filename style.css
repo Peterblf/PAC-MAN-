@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: black;
+  background-color: #111;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,6 +13,7 @@ body {
   grid-template-rows: repeat(31, 20px);
   gap: 0;
   position: relative;
+  background-color: #111;
 }
 
 /* Cases */
@@ -22,19 +23,19 @@ body {
 }
 
 .wall {
-  background-color: black;
+  background-color: #333; 
 }
 
 .empty {
-  background-color: blue;
+  background-color: #007; 
 }
 
-/* Pac-Man */
+/* PacMan */
 #pacman {
   width: 20px;
   height: 20px;
   background-color: yellow;
   border-radius: 50%;
   position: absolute;
-  transition: top 0.1s, left 0.1s;
+  transition: top 0.1s linear, left 0.1s linear;
 }

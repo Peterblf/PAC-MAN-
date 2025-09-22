@@ -1,4 +1,4 @@
-const carte = [    // sous forme d'une liste 2d 
+const carte = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
   [1,2,2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
   [1,2,1,1,1,2,1,1,1,1,2,1,1,2,1,1,1,1,2,1,1,1,2,1,1,1,2,1],
@@ -30,16 +30,17 @@ const carte = [    // sous forme d'une liste 2d
 ];
 
 const gameContainer = document.getElementById('game-container');
+const cellSize = 20;
 
-// générer la map (dessiner)
+// Générer la map
 carte.forEach((row, y) => {
   row.forEach((cell, x) => {
     const div = document.createElement('div');
     div.classList.add('cell');
     if(cell === 1) div.classList.add('wall');
     else div.classList.add('empty');
-    div.dataset.x = x;
-    div.dataset.y = y;
+    div.style.left = x * cellSize + 'px';
+    div.style.top = y * cellSize + 'px';
     gameContainer.appendChild(div);
   });
 });
@@ -47,54 +48,71 @@ carte.forEach((row, y) => {
 // Pac-Man
 const pacman = document.createElement('div');
 pacman.id = 'pacman';
-let pacX = 14; // position initiale en x
-let pacY = 23; // position initiale en y
+let pacX = 14 * cellSize;
+let pacY = 23 * cellSize;
 gameContainer.appendChild(pacman);
 
 function updatePacmanPosition() {
-  pacman.style.left = pacX * 20 + 'px';
-  pacman.style.top = pacY * 20 + 'px';
+  pacman.style.left = pacX + 1 + 'px';
+  pacman.style.top = pacY + 1 + 'px';
 }
 
 updatePacmanPosition();
 
-// Déplacement continu (comme dans le vrai jeu)
-let direction = null;
+// Déplacement fluide
+let currentDirection = null;
+let desiredDirection = null;
+const speed = 2; // pixels par frame
 
 document.addEventListener('keydown', (e) => {
   if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
-    direction = e.key;
+    desiredDirection = e.key;
   }
 });
 
-document.addEventListener('keyup', (e) => {
-  if(e.key === direction) {
-    direction = null;
+function canMove(x, y) {
+  const col = Math.floor(x / cellSize);
+  const row = Math.floor(y / cellSize);
+  if(row < 0) row = carte.length -1;
+  if(row >= carte.length) row = 0;
+  if(col < 0) col = carte[0].length -1;
+  if(col >= carte[0].length) col = 0;
+  return carte[row][col] !== 1;
+}
+
+function gameLoop() {
+  // Essayer de changer de direction si possible
+  if(desiredDirection) {
+    let testX = pacX;
+    let testY = pacY;
+    if(desiredDirection === 'ArrowUp') testY -= speed;
+    if(desiredDirection === 'ArrowDown') testY += speed;
+    if(desiredDirection === 'ArrowLeft') testX -= speed;
+    if(desiredDirection === 'ArrowRight') testX += speed;
+    if(canMove(testX, testY)) currentDirection = desiredDirection;
   }
-});
 
-// Boucle pour les déplacements
-setInterval(() => {
-  if(!direction) return;
+  // Déplacer dans la direction actuelle
+  if(currentDirection) {
+    let nextX = pacX;
+    let nextY = pacY;
+    if(currentDirection === 'ArrowUp') nextY -= speed;
+    if(currentDirection === 'ArrowDown') nextY += speed;
+    if(currentDirection === 'ArrowLeft') nextX -= speed;
+    if(currentDirection === 'ArrowRight') nextX += speed;
 
-  let nextX = pacX;
-  let nextY = pacY;
-
-  if(direction === 'ArrowUp') nextY--;
-  if(direction === 'ArrowDown') nextY++;
-  if(direction === 'ArrowLeft') nextX--;
-  if(direction === 'ArrowRight') nextX++;
-
-  // téléportation si hors limites
-  if(nextX < 0) nextX = carte[0].length -1;
-  if(nextX >= carte[0].length) nextX = 0;
-  if(nextY < 0) nextY = carte.length -1;
-  if(nextY >= carte.length) nextY = 0;
-
-  // test collision 
-  if(carte[nextY][nextX] !== 1) {
-    pacX = nextX;
-    pacY = nextY;
-    updatePacmanPosition();
+    if(canMove(nextX, nextY)) {
+      pacX = nextX;
+      pacY = nextY;
+    }
   }
-}, 120); // déplace Pac-Man toutes les 120ms
+
+  // Téléportation horizontale
+  if(pacX < 0) pacX = carte[0].length * cellSize - speed;
+  if(pacX >= carte[0].length * cellSize) pacX = 0;
+
+  updatePacmanPosition();
+  requestAnimationFrame(gameLoop);
+}
+
+requestAnimationFrame(gameLoop);

@@ -1,7 +1,7 @@
 # Pac-Man JS 🟡
 PAC MAN GAME From scratch, projet algo
 
-Projet en JavaScript pour recréer une version simplifiée de Pac-Man
+Projet dev en JavaScript sur VS Code pour recréer une version simplifiée de Pac-Man
 
 ## Objectif
 - Développer un jeu jouable en JavaScript.

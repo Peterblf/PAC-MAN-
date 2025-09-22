@@ -36,8 +36,8 @@ carte.forEach((row, y) => {
   row.forEach((cell, x) => {
     const div = document.createElement('div');
     div.classList.add('cell');
-    if(cell === 1) div.classList.add('wall');  // si on ce trouve sur un cellule 1 alors on met un murs
-    else div.classList.add('empty');  // sinon on met rien (pour l'instant (on mettra des pacgommes plus tard)
+    if(cell === 1) div.classList.add('wall');
+    else div.classList.add('empty');
     div.dataset.x = x;
     div.dataset.y = y;
     gameContainer.appendChild(div);
@@ -47,8 +47,8 @@ carte.forEach((row, y) => {
 // Pac-Man
 const pacman = document.createElement('div');
 pacman.id = 'pacman';
-let pacX = 13; // spawn du pacman avec les coordonnées(l'equivalent) dans la liste 2d
-let pacY = 12; 
+let pacX = 14; // position initiale en x
+let pacY = 23; // position initiale en y
 gameContainer.appendChild(pacman);
 
 function updatePacmanPosition() {
@@ -58,14 +58,32 @@ function updatePacmanPosition() {
 
 updatePacmanPosition();
 
-// déplacement avec un écouteur d'évenement pour detecter le clavier 
+// Déplacement continu (comme dans le vrai jeu)
+let direction = null;
+
 document.addEventListener('keydown', (e) => {
+  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+    direction = e.key;
+  }
+});
+
+document.addEventListener('keyup', (e) => {
+  if(e.key === direction) {
+    direction = null;
+  }
+});
+
+// Boucle pour les déplacements
+setInterval(() => {
+  if(!direction) return;
+
   let nextX = pacX;
   let nextY = pacY;
-  if(e.key === 'ArrowUp') nextY--;
-  if(e.key === 'ArrowDown') nextY++;
-  if(e.key === 'ArrowLeft') nextX--;
-  if(e.key === 'ArrowRight') nextX++;
+
+  if(direction === 'ArrowUp') nextY--;
+  if(direction === 'ArrowDown') nextY++;
+  if(direction === 'ArrowLeft') nextX--;
+  if(direction === 'ArrowRight') nextX++;
 
   // téléportation si hors limites
   if(nextX < 0) nextX = carte[0].length -1;
@@ -73,10 +91,10 @@ document.addEventListener('keydown', (e) => {
   if(nextY < 0) nextY = carte.length -1;
   if(nextY >= carte.length) nextY = 0;
 
-  // Vérifie que la prochaine case n'est pas un mur (verif continue)
+  // test collision 
   if(carte[nextY][nextX] !== 1) {
     pacX = nextX;
     pacY = nextY;
-    updatePacmanPosition();   
+    updatePacmanPosition();
   }
-});
+}, 120); // déplace Pac-Man toutes les 120ms

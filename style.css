@@ -9,8 +9,8 @@ body {
 
 #game-container {
   position: relative;
-  width: 560px; /* 28 colonnes * 20px */
-  height: 620px; /* 31 lignes * 20px */
+  width: 560px; /* 28 colonnes */ 
+  height: 620px; /* 31 lignes */
 }
 
 /* Chaque case */
@@ -39,3 +39,16 @@ body {
   position: absolute;
   z-index: 10;
 }
+
+.pacgomme {
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

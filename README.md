@@ -16,9 +16,9 @@ Projet dev en JavaScript sur VS Code pour recréer une version simplifiée de Pa
 - [ ] Étape 3 – Collecte des pac-gommes, ajout de score 
 - [ ] Étape 4 – Condition de victoire
 - [ ] Étape 5 – Fantômes, collisions Pac-Man/fantômes, vies 
-- [ ] Étape 6 – Super pac-gommes
-- [ ] Étape 7 – Améliorations visuelles/ "vrai" pacman(pas juste une boule jaune) et fantomes
-- [ ] Étape 8 – Optimisations et finition 
+- [ ] Étape 6 – Super pac-gommes (optionnel)
+- [ ] Étape 7 – Améliorations visuelles/ "vrai" pacman(pas juste une boule jaune) et fantomes (optionnel=
+- [ ] Étape 8 – Optimisations et finition (pas optionnel)
 
 ## Lancement et jouabilité
 Ouvrir simplement `index.html` dans un navigateur 

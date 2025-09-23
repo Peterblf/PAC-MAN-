@@ -1,65 +1,84 @@
 body {
   margin: 0;
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background: black;
+  overflow: hidden;
 }
 
 #game-container {
   position: relative;
-  width: 560px; /* 28 colonnes*/
-  height: 520px; /* 31 lignes */
-  border: 2px solid white; /* contour blanc */
-}
-
-/* Chaque case */
-.cell {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  box-sizing: border-box;
-}
-
-/* Types de cases */
-.wall { 
-  background-color: #000; /* murs noirs */
-}
-
-.empty { 
-  background-color: #00f; 
-}
-
-/* Pac-Man */
-#pacman {
-  width: 20px;  /* taille de la case */
-  height: 20px;
-  background-color: yellow;
-  border-radius: 50%;
-  position: absolute;
-  z-index: 10;
-}
-
-.pacgomme {
-  width: 6px;
-  height: 6px;
-  background-color: #fff;
-  border-radius: 50%;
-  position: absolute;
-  z-index: 5;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 560px; /* 28 colonnes */
+  height: 520px; /* 26 lignes  */
+  margin: auto;
+  border: 2px solid white;
 }
 
 #score {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  font-family: sans-serif;
+  color: white;
   font-size: 20px;
-  z-index: 20;
+  text-align: center;
+  margin: 10px;
+}
+
+#overlay {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin: 10px auto; /* centré sous la map */
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  z-index: 1000; 
+}
+
+#startScreen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 2000;  /* pour ajuster les "plan" des objets cs */
+}
+
+.cell {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+.wall {
+  background-color: #000;
+}
+
+.empty {
+  background-color: blue  ;
+}
+
+.pacgomme {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#pacman {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: yellow;
+  border-radius: 50%;
+}
+
+.ghost {
+  width: 20px;
+  height: 20px;
+  background: red; 
+  border-radius: 50%;
+  position: absolute;
 }

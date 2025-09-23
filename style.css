@@ -6,8 +6,8 @@ body {
 
 #game-container {
   position: relative;
-  width: 560px; /* 28 colonnes */
-  height: 520px; /* 26 lignes  */
+  width: 560px; /* 28 colonnes * 20px */
+  height: 520px; /* 26 lignes * 20px */
   margin: auto;
   border: 2px solid white;
 }
@@ -27,7 +27,7 @@ body {
   font-size: 18px;
   font-weight: bold;
   color: white;
-  z-index: 1000; 
+  z-index: 1000; /* juste au cas où */
 }
 
 #startScreen {
@@ -41,7 +41,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 24px;
-  z-index: 2000;  /* pour ajuster les "plan" des objets cs */
+  z-index: 2000; /* au-dessus de la map mais overlay reste visible si z-index plus bas */
 }
 
 .cell {
